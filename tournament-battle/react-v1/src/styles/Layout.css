@@ -1,0 +1,53 @@
+/* header */
+.header {
+    width: 100%;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.header-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* footer */
+.footer {
+    width: 100%;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border);
+    margin-top: 50px;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* main app layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-main {
+    flex: 1;
+}

@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f9f9fb;
+    --text: #1d1d1f;
+    --text-muted: #6c6c75;
+    --primary: #0d6efd;
+    --primary-dark: #0849b4;
+    --border: #d3d3db;
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.08);
+    --danger: #d93025;
+    --success: #198754;
+    --pending: #f0ad4e;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 0 14px;
+    }
+}
