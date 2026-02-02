@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .download-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .file-item:last-child {
+            border-bottom: none;
+        }
+        a {
+            background-color: #0066cc;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        a:hover {
+            background-color: #0052a3;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="download-container">
+        <h1>Download Build Files</h1>
+
+        <div class="file-item">
+            <div>
+                <strong>tournament-build-files.zip</strong>
+                <p style="margin: 5px 0; color: #666; font-size: 12px;">283 KB</p>
+            </div>
+            <a href="/files/tournament-build-files.zip" download>Download</a>
+        </div>
+
+        <div class="file-item">
+            <div>
+                <strong>tournament-battle.zip</strong>
+                <p style="margin: 5px 0; color: #666; font-size: 12px;">211 KB</p>
+            </div>
+            <a href="/files/tournament-battle.zip" download>Download</a>
+        </div>
+    </div>
+</body>
+</html>
