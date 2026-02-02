@@ -3,62 +3,142 @@
 <head>
     <title>Download Files</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 20px;
         }
-        .download-container {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 28px;
+        }
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         .file-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            padding: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
-        .file-item:last-child {
-            border-bottom: none;
+        .file-item:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
         }
-        a {
-            background-color: #0066cc;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 14px;
+        .file-info {
+            flex: 1;
         }
-        a:hover {
-            background-color: #0052a3;
-        }
-        h1 {
+        .file-name {
+            font-weight: 600;
             color: #333;
+            margin-bottom: 4px;
+        }
+        .file-size {
+            font-size: 12px;
+            color: #999;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            margin-left: 12px;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        .download-btn.loading {
+            opacity: 0.7;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="download-container">
-        <h1>Download Build Files</h1>
-
-        <div class="file-item">
-            <div>
-                <strong>tournament-build-files.zip</strong>
-                <p style="margin: 5px 0; color: #666; font-size: 12px;">283 KB</p>
+    <div class="container">
+        <h1>Download Files</h1>
+        <div class="file-list">
+            <div class="file-item">
+                <div class="file-info">
+                    <div class="file-name">tournament-build-files.zip</div>
+                    <div class="file-size">283 KB</div>
+                </div>
+                <button class="download-btn" onclick="downloadFile('tournament-build-files.zip')">Download</button>
             </div>
-            <a href="/files/tournament-build-files.zip" download>Download</a>
-        </div>
-
-        <div class="file-item">
-            <div>
-                <strong>tournament-battle.zip</strong>
-                <p style="margin: 5px 0; color: #666; font-size: 12px;">211 KB</p>
+            <div class="file-item">
+                <div class="file-info">
+                    <div class="file-name">tournament-battle.zip</div>
+                    <div class="file-size">211 KB</div>
+                </div>
+                <button class="download-btn" onclick="downloadFile('tournament-battle.zip')">Download</button>
             </div>
-            <a href="/files/tournament-battle.zip" download>Download</a>
         </div>
     </div>
+
+    <script>
+        async function downloadFile(filename) {
+            try {
+                const button = event.target;
+                button.classList.add('loading');
+                button.textContent = 'Downloading...';
+
+                const response = await fetch(filename);
+                if (!response.ok) throw new Error('Download failed');
+
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+
+                button.classList.remove('loading');
+                button.textContent = 'Downloaded!';
+                setTimeout(() => {
+                    button.textContent = 'Download';
+                }, 2000);
+            } catch (error) {
+                alert('Error downloading file: ' + error.message);
+                button.classList.remove('loading');
+                button.textContent = 'Download';
+            }
+        }
+    </script>
 </body>
 </html>
